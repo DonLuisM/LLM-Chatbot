@@ -3,39 +3,58 @@ import time
 from langchain_ollama import ChatOllama
 import ollama
 
-
-def stream_text(text):
+# Funciones 
+def stream_text(text, delay=0.0002):
     '''
     Función para hacer lograr el correcto funcionamiento del st.write_stream 
     '''
-    for char in text:
-        yield char
-        time.sleep(0.02)
+    for word in text.split():
+        yield word + " "
+        time.sleep(delay)
         
-st.write("## Chat Conversacional")
-st.write('### Bienvenido')
+def list_models():
+    models_running = ollama.list()['models']
+    available_models = [model["model"] for model in models_running]
+    return available_models
+
+lista = list_models()
+
+def clc_chat_history():
+    st.session_state.message = [{
+        "role": "assistant",
+        "content": "Hey boss, How can I help you today? \n\n What word or phrase do you want to translate?"
+    }]
+            
+# -------------------------------------------------------- 
+ 
+st.set_page_config(page_title="Chatbot Conversacional")
+st.title("Chat Conversacional")
+st.subheader('Bienvenido')
 
 if 'message' not in st.session_state:
-    st.session_state.message = []
+    clc_chat_history()
     
 for message in st.session_state.message:
-    with st.chat_message(message["role"]):
-        st.write(message["content"])
+    role = message.get("role", "")
+    content = message.get("content", "")
     
+    if role == "user":
+        with st.chat_message("user", avatar=":material/sprint:"):
+            st.write(content)
+    elif role == "assistant":
+        with st.chat_message("assistant", avatar=":material/network_intelligence:"):
+            st.write(content)
+
 # Configuración barra lateral (Configuración parámetros)
 with st.sidebar:
-    st.write('## Configuración IA')
+    st.title('🤖 Configuración IA')
     
     left, right = st.columns(2)
-    if left.button('Nuevo chat', icon="🗒️", use_container_width=True):
-        st.session_state.message = []
-        st.session_state.nuevo_chat = True
-        
-    if st.session_state.get("nuevo_chat"):
+    if left.button('Nuevo chat', icon="🗒️", use_container_width=True, on_click=clc_chat_history):
         st.toast("✅ Nuevo chat iniciado.")
-        st.session_state.nuevo_chat = False
-    
 
+    st.session_state.model = st.selectbox('Elije el modelo', lista)
+    
     with right.popover("Config.", icon="⚙️"):
         st.session_state.temperature = st.slider(
             'Temperatura',
@@ -65,68 +84,67 @@ with st.sidebar:
             value=256,
             step=1
         )
-        
+            
 # Configuración userInput
-modeloLLM = 'qwen3'
+modeloLLM = st.session_state.model
+
 user_input = st.chat_input(
     'Escribe o pega el texto aquí', 
     accept_file=False,
     file_type=["jpg", "jpeg", "png", "pdf", "txt"])
-
-with st.chat_message("assistant", avatar=":material/network_intelligence:"):
-    st.write("Hey boss, How can I help you today? \n\n What word or phrase do you want to translate?")
     
 if user_input:
     # Mostrar pregunta en un contenedor principal
     with st.container():
         with st.chat_message("user", avatar=":material/sprint:"):
             st.write(user_input)
-          
-    llm = ChatOllama(
-        model = modeloLLM,
-        temperature = st.session_state.temperature,
-        top_p = st.session_state.top_p,
-        top_k = st.session_state.top_k,
-        num_predict = st.session_state.max_tokens
-    )
+            
+        st.session_state.message.append({"role": "user", "content": user_input})
+        
+        llm = ChatOllama(
+            model = modeloLLM,
+            temperature = st.session_state.temperature,
+            top_p = st.session_state.top_p,
+            top_k = st.session_state.top_k,
+            num_predict = st.session_state.max_tokens
+        )
+    
+        # /nothink
+        prompt = "You are a bilingual assistant"
+        messages = [
+            ("system", prompt),
+            ("human", user_input)
+        ]
   
-    # /nothink
-    prompt = "You are a bilingual assistant"
-    messages = [
-        ("system", prompt),
-        ("human", user_input)
-    ]
-  
-    # Generar y mostrar respuesta
-    with st.status(f"*Modelo pensando...*", expanded=True) as status:
-        response = llm.invoke(messages)
-        st.write("*🗒️ Procesando información...*")
-        time.sleep(1)
-        st.write("*🔧 Puliendo detalles...*")
-        time.sleep(1)
-        st.write("*♟️ Jugando ajedrez...*")
-        time.sleep(1)
-        st.write("*🧠 Generando respuesta...*")
-        time.sleep(1)
-        status.update(label = "🤖 Respuesta generada", state="complete", expanded=False)
+        # Generar y mostrar respuesta
+        with st.status(f"*Modelo pensando...*", expanded=True) as status:
+            response = llm.invoke(messages)
+            st.write("*🗒️ Procesando información...*")
+            time.sleep(1)
+            st.write("*🔧 Puliendo detalles...*")
+            time.sleep(1)
+            st.write("*♟️ Jugando ajedrez...*")
+            time.sleep(1)
+            st.write("*🧠 Generando respuesta...*")
+            time.sleep(1)
+            status.update(label = "🤖 Respuesta generada", state="complete", expanded=False)
 
-    if response:
-        st.write_stream(stream_text(response.content))
+        if response:
+            with st.chat_message("assistant", avatar=":material/network_intelligence:"):
+                st.write_stream(stream_text(response.content))
+                # Metadata de la respuesta
+                st.caption(f"""
+                **Detalles Técnicos:**
+                - Modelo preciso: {response.response_metadata['model']}
+                - Tokens usados: {response.response_metadata['eval_count']}
+                - Tiempo respuesta: {response.response_metadata['total_duration'] / 1e9:.2f}s
+                """)
     
-    # Metadata de la respuesta
-    st.caption(f"""
-    **Detalles Técnicos:**
-    - Temperatura: {st.session_state.temperature}
-    - Tokens usados: {response.response_metadata['eval_count']}
-    - Tiempo respuesta: {response.response_metadata['total_duration'] / 1e9:.2f}s
-    - Modelo preciso: {response.response_metadata['model']}
-    - Tokens entrada: {response.usage_metadata['input_tokens']}
-    """)
-    
-    # Guardar en historial
-    st.session_state.message.append({
-        "modelo": modeloLLM,
-        "pregunta": user_input,
-        "respuesta": response.content,
-        "metadata": response.response_metadata
-    })
+                # Guardar en historial
+                st.session_state.message.append({
+                    "role": "assistant",
+                    "modelo": modeloLLM,
+                    "pregunta": user_input,
+                    "respuesta": response.content,
+                    "metadata": response.response_metadata
+                })
