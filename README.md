@@ -1,13 +1,25 @@
-<!-- Organización del Repositorio GitHub: El repositorio debe ser público y contener:
-El código fuente en una carpeta src, incluyendo la lógica del chatbot y del RAG.
-Los PDFs utilizados en la carpeta data.
-Un README.md detallado con:
-Instrucciones claras para replicar el proyecto.
-Ejemplos de consultas de prueba y las respuestas esperadas (p. ej., "¿Cuál es el tema principal del documento?" junto a una respuesta contextualizada).
-.gitignore configurado correctamente. -->
-
 # :brain: _CORTEXiRAG-BOT_
 Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capaz de interactuar con el usuario de manera casual o haciendo uso del beneficio de la técnica RAG para proporcionar respuestas informadas basadas en el contenido de archivos PDF cargados por el usuario. La funcionalidad del modelo se logra gracias a librerías como LangChain, LangSmith, PyPDFLoader, RecursiveCharacterTextSplitter y de embeddings.
+
+### :file_folder: Estructura del código
+```
+📁 LLM-Chatbot
+|
+│── 📁 data
+│   |── Manual de usuario.pdf                 # Archivos pdf para el RAG
+│   └── Manual de usuario.pdf                 # Archivos pdf para el RAG
+│
+│── 📁 src
+│   |── app.py        # Estructura principal del Streamlit y modelo LLM (Código principal)
+│   └── rag.py        # Implementación del RAG (Módulo lógica de la técnica RAG)
+|
+│── .gitignore        # Archivos en .gitgnore
+│── LICENSE           # Licensia MIT
+│── README.md         # Archvio readme, descripción del proyecto
+│── hello.py          # Archivo inicial al hacer uv init
+│── pyproject.toml    # Apartado donde se encuentra la descripción del uv (versión python, librerías instaladas)
+└── uv.lock           # Lista de versiones de paquetes y dependencias para que el entorno sea reproducido sin problemas.
+```
 
 ### :dart: Características
 - Consulta inteligente de PDFs.
@@ -34,7 +46,7 @@ Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capa
 | Vista Streamlit |
 |------------------|
 | ![st](./data/) |
- 
+
 ---
 ## :hammer_and_wrench: Configuración
 
@@ -55,20 +67,16 @@ ollama run qwen3:latest
 
 ### 3. Clona el repositorio e instalar dependencias
 ```bash
-git clone https://github.com/DonLuisM/languagesTranslate_Ollama.git
-cd languagesTranslate_Ollama
+git clone https://github.com/DonLuisM/LLM-Chatbot.git
+cd LLM-Chatbot
 
 uv sync
 ```
 
-### 4. Ejecutar el streamlit para comparar respuestas
+### 4. Ejecutar la app en Streamlit
 ```bash
-uv run streamlit run .\streamlit\app_st_cont.py   
+uv run streamlit run .\src\app.py 
 ```
----
-
-### :: Agradecimientos (Recursos de Apoyo)
-Para lograr el debido desarrollo de la aplicación.
 
 ### :scroll: Licencia
 Licencia MIT – consulta el archivo [LICENSE](./LICENSE) para más detalles.

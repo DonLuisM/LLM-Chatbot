@@ -24,7 +24,7 @@ def rag_function(filepath):
     print(docs[0].metadata)
     
     text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000, 
+    chunk_size=2000, 
     chunk_overlap=200, 
     add_start_index=True
     )
