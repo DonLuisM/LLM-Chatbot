@@ -21,6 +21,18 @@ Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capa
 └── uv.lock           # Lista de versiones de paquetes y dependencias para que el entorno sea reproducido sin problemas.
 ```
 
+
+### :: Pruebas de preguntas
+> [!NOTE]
+> La pregunta es para el libro "La vuelta al mundo en 80 días"
+- Q1: Quien es el autor del libro?
+- RM: El autor del libro "La vuelta al mundo en 80 días" es Jules Verne.
+
+> [!NOTE]
+> La pregunta es para el manual "Manual de Usuario.pdf"
+- Q2:
+- RM: 
+
 ### :dart: Características
 - Consulta inteligente de PDFs.
 - Respuestas contextualizadas con Langchain, Ollama y técnicas RAG.
@@ -39,13 +51,13 @@ Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capa
 
 ### :framed_picture: Visualización de la aplicación
 
-| Vista Web | Vista Móvil |
-|-----------|-------------|
-| ![webapp](./data/) | ![mobile](./data/) |
+| App Streamlit |
+|-----------|
+| ![InterfazST](./data/Interfaz_ST.jpg) |
 
-| Vista Streamlit |
-|------------------|
-| ![st](./data/) |
+| LangSmith | Vista Móvil |
+|------------------|-------------|
+| ![LangSmith](./data/validacion_LangSmith.jpg) | ![st](./data/) |
 
 ---
 ## :hammer_and_wrench: Configuración
