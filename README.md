@@ -1,7 +1,7 @@
 # :brain: _CORTEXiRAG-BOT_
 Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capaz de interactuar con el usuario de manera casual o haciendo uso del beneficio de la técnica RAG para proporcionar respuestas informadas basadas en el contenido de archivos PDF cargados por el usuario. La funcionalidad del modelo se logra gracias a librerías como LangChain, LangSmith, PyPDFLoader, RecursiveCharacterTextSplitter y de embeddings.
 
-## :file_folder: Estructura del código
+### :file_folder: Estructura del código
 ```
 📁 LLM-Chatbot
 |
