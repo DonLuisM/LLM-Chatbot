@@ -49,7 +49,7 @@ st.set_page_config(page_title="CORTEXiRAG BOT", page_icon="🧠")
 if "message" not in st.session_state:
     st.session_state.message = [{
         "role": "assistant", 
-        "content": "Hey jefé, En qué puedo ayudarte hoy?"
+        "content": "Hey jefé, soy CORTEXiRAG. En qué puedo ayudarte hoy?"
     }]
 
 if "historial" not in st.session_state:
