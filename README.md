@@ -51,13 +51,13 @@ Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capa
 
 ### :framed_picture: Visualización de la aplicación
 
-| App Streamlit |
-|-----------|
-| ![InterfazST](./data/Interfaz_ST.jpg) |
+| App Streamlit | LangSmith |
+|-----------| -------------|
+| ![InterfazST](./data/Interfaz_ST.jpg) | ![LangSmith](./data/validacion_LangSmith.jpg) |
 
-| LangSmith | Vista Móvil |
-|------------------|-------------|
-| ![LangSmith](./data/validacion_LangSmith.jpg) | ![st](./data/) |
+| App resultado |
+|------------------|
+| ![app](./data/interfaz_function.jpg) |
 
 ---
 ## :hammer_and_wrench: Configuración
