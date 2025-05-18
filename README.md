@@ -1,11 +1,25 @@
-<!-- Organización del Repositorio GitHub: El repositorio debe ser público y contener:
-
-Instrucciones claras para replicar el proyecto.
-Ejemplos de consultas de prueba y las respuestas esperadas (p. ej., "¿Cuál es el tema principal del documento?" junto a una respuesta contextualizada).
-.gitignore configurado correctamente. -->
-
 # :brain: _CORTEXiRAG-BOT_
 Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capaz de interactuar con el usuario de manera casual o haciendo uso del beneficio de la técnica RAG para proporcionar respuestas informadas basadas en el contenido de archivos PDF cargados por el usuario. La funcionalidad del modelo se logra gracias a librerías como LangChain, LangSmith, PyPDFLoader, RecursiveCharacterTextSplitter y de embeddings.
+
+## :file_folder: Estructura del código
+```
+📁 LLM-Chatbot
+|
+│── 📁 data
+│   |── Manual de usuario.pdf                 # Archivos pdf para el RAG
+│   └── Manual de usuario.pdf                 # Archivos pdf para el RAG
+│
+│── 📁 src
+│   |── app.py        # Estructura principal del Streamlit y modelo LLM (Código principal)
+│   └── rag.py        # Implementación del RAG (Módulo lógica de la técnica RAG)
+|
+│── .gitignore        # Archivos en .gitgnore
+│── LICENSE           # Licensia MIT
+│── README.md         # Archvio readme, descripción del proyecto
+│── hello.py          # Archivo inicial al hacer uv init
+│── pyproject.toml    # Apartado donde se encuentra la descripción del uv (versión python, librerías instaladas)
+└── uv.lock           # Lista de versiones de paquetes y dependencias para que el entorno sea reproducido sin problemas.
+```
 
 ### :dart: Características
 - Consulta inteligente de PDFs.
@@ -32,9 +46,6 @@ Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capa
 | Vista Streamlit |
 |------------------|
 | ![st](./data/) |
-
----
-## :: Estructura del código
 
 ---
 ## :hammer_and_wrench: Configuración
