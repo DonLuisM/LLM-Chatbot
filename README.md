@@ -1,7 +1,5 @@
 <!-- Organización del Repositorio GitHub: El repositorio debe ser público y contener:
-El código fuente en una carpeta src, incluyendo la lógica del chatbot y del RAG.
-Los PDFs utilizados en la carpeta data.
-Un README.md detallado con:
+
 Instrucciones claras para replicar el proyecto.
 Ejemplos de consultas de prueba y las respuestas esperadas (p. ej., "¿Cuál es el tema principal del documento?" junto a una respuesta contextualizada).
 .gitignore configurado correctamente. -->
@@ -34,7 +32,10 @@ Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capa
 | Vista Streamlit |
 |------------------|
 | ![st](./data/) |
- 
+
+---
+## :: Estructura del código
+
 ---
 ## :hammer_and_wrench: Configuración
 
@@ -55,20 +56,16 @@ ollama run qwen3:latest
 
 ### 3. Clona el repositorio e instalar dependencias
 ```bash
-git clone https://github.com/DonLuisM/languagesTranslate_Ollama.git
-cd languagesTranslate_Ollama
+git clone https://github.com/DonLuisM/LLM-Chatbot.git
+cd LLM-Chatbot
 
 uv sync
 ```
 
 ### 4. Ejecutar el streamlit para comparar respuestas
 ```bash
-uv run streamlit run .\streamlit\app_st_cont.py   
+uv run streamlit run .\src\app.py 
 ```
----
-
-### :: Agradecimientos (Recursos de Apoyo)
-Para lograr el debido desarrollo de la aplicación.
 
 ### :scroll: Licencia
 Licencia MIT – consulta el archivo [LICENSE](./LICENSE) para más detalles.
