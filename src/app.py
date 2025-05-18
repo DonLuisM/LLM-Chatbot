@@ -86,7 +86,7 @@ with st.sidebar:
             'Temperatura',
             min_value=0.0,
             max_value=1.0,
-            value=0.2,
+            value=0.7,
             step=0.1
         )
         st.session_state.top_p = st.slider(
