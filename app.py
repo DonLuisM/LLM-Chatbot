@@ -22,18 +22,20 @@ lista = list_models()
 def clc_chat_history():
     st.session_state.message = [{
         "role": "assistant",
-        "content": "Hey boss, How can I help you today? \n\n What word or phrase do you want to translate?"
+        "content": "Hey jefé, En qué puedo ayudarte hoy?"
     }]
+    st.session_state.historial = []
             
 # -------------------------------------------------------- 
  
-st.set_page_config(page_title="Chatbot Conversacional")
-st.title("Chat Conversacional")
-st.subheader('Bienvenido')
+st.set_page_config(page_title="Chatbot Conversacional", page_icon="🧠")
 
-if 'message' not in st.session_state:
-    clc_chat_history()
-    
+if "messages" not in st.session_state:
+    st.session_state.messages = [{"role": "assistant", "content": "Hey jefé, En qué puedo ayudarte hoy?"}]
+
+if "historial" not in st.session_state:
+    st.session_state.historial = []
+        
 for message in st.session_state.message:
     role = message.get("role", "")
     content = message.get("content", "")
@@ -142,7 +144,11 @@ if user_input:
     
                 # Guardar en historial
                 st.session_state.message.append({
-                    "role": "assistant",
+                    "role": "assistant", 
+                    "content": response.content
+                })
+                
+                st.session_state.historial.append({
                     "modelo": modeloLLM,
                     "pregunta": user_input,
                     "respuesta": response.content,
