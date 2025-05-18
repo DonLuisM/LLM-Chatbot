@@ -73,7 +73,7 @@ cd LLM-Chatbot
 uv sync
 ```
 
-### 4. Ejecutar el streamlit para comparar respuestas
+### 4. Ejecutar la app en Streamlit
 ```bash
 uv run streamlit run .\src\app.py 
 ```
