@@ -148,8 +148,9 @@ accept_file=True,
 file_type=["jpg", "jpeg", "png"],)
 
 if user_input is None:
-    st.caption("""1st Q: Cómo debería limpiar el módulo base del equipo? \n\n 2nd Q: Que es el modo cortical?""")
-    st.caption("3rd Q: ")
+    st.caption("""1st Q: Cómo debería limpiar el módulo base del equipo? 
+               \n\n 2nd Q: Que es el modo cortical? 
+               \n\n 3rd Q: Quien pertenecía al Reform-Club?""")
 
 if st.session_state.pdf_vector and st.session_state.pdf_loaded:
     if user_input and user_input.text:
