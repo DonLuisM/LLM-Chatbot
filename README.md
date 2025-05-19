@@ -30,8 +30,12 @@ Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capa
 
 > [!NOTE]
 > La pregunta es para el manual "Manual de Usuario.pdf"
-- Q2:
-- RM: 
+- Q2: Cómo debería limpiar el módulo de base del equipo?
+- RM: Para limpiar el módulo base, se debe:
+  - Apagar el modulo base y desconectar cualquier conexión activa.
+  - Desinfectar los módulos.
+  - Limpiar con trapos secos o ligeramente húmedos cada componente del equipo.
+  - Inspeccionar visualmente el instrumento y sus componentes para detectar daños o desgaste.
 
 ### :dart: Características
 - Consulta inteligente de PDFs.
@@ -51,13 +55,13 @@ Este proyecto  consiste en un chatbot interactivo con interfaz en Streamlit capa
 
 ### :framed_picture: Visualización de la aplicación
 
-| App Streamlit |
-|-----------|
-| ![InterfazST](./data/Interfaz_ST.jpg) |
+| App Streamlit | LangSmith |
+|-----------| -------------|
+| ![InterfazST](./data/Interfaz_ST.jpg) | ![LangSmith](./data/validacion_LangSmith.jpg) |
 
-| LangSmith | Vista Móvil |
-|------------------|-------------|
-| ![LangSmith](./data/validacion_LangSmith.jpg) | ![st](./data/) |
+| App resultado |
+|------------------|
+| ![app](./data/interfaz_function.jpg) |
 
 ---
 ## :hammer_and_wrench: Configuración
